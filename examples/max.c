@@ -10,6 +10,7 @@ int main(void)
     printf("%d\n", max);
     return 0;
 }
+
 int find_max(int *myArr, int length)
 {
     int max = myArr[0];
