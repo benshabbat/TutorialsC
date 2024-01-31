@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int main(){
+int main()
+{
 
     double A;
     double B;
@@ -13,7 +14,7 @@ int main(){
     printf("Enter side B: ");
     scanf("%lf", &B);
 
-    C = sqrt(A*A + B*B);
+    C = sqrt(A * A + B * B);
 
     printf("Side C: %lf", C);
 
