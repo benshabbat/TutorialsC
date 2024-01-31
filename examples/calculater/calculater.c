@@ -21,19 +21,19 @@ int main()
     {
     case '+':
         result = num1 + num2;
-        printf("\nresult: %lf", result);
+        printf("\nresult: %.2*lf", result);
         break;
     case '-':
         result = num1 - num2;
-        printf("\nresult: %lf", result);
+        printf("\nresult: %.2lf", result);
         break;
     case '*':
         result = num1 * num2;
-        printf("\nresult: %lf", result);
+        printf("\nresult: %.2lf", result);
         break;
     case '/':
         result = num1 / num2;
-        printf("\nresult: %lf", result);
+        printf("\nresult: %.2lf", result);
         break;
     default:
         printf("%c is not valid", operator);
