@@ -9,8 +9,8 @@ void birthday(char x[], int y)//<- parameters
 
 int main()
 {
-   char name[] = "Bro";
-   int age = 21;
+   char name[] = "David";
+   int age = 30;
 
    birthday(name, age);//<-arguments
 
