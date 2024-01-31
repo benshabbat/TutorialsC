@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 int main()
 {
@@ -7,9 +8,9 @@ int main()
     //          allows a value to be tested for equality against many cases
 
     char grade;
-
     printf("\nEnter a letter grade: ");
     scanf("%c", &grade);
+    grade=toupper(grade);
 
     switch (grade)
     {
