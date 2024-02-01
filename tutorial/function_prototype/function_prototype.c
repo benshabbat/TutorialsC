@@ -20,8 +20,8 @@ int main()
    // 2. Helps with debugging
    // 3. Commonly used in header files
 
-   char name[] = "Bro";
-   int age = 21;
+   char name[] = "David";
+   int age = 30;
 
    hello(name, age);
 
