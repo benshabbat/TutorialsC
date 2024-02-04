@@ -2,7 +2,7 @@
 
 // Write a C program that reads three values of whole numbers
 //(which can be negative) into variables x, y, and z, and prints the distance between x + y to z
-int distance_between_two_numbers_to_third(int x, int y, int z)
+void distance_between_two_numbers_to_third(int x, int y, int z)
 {
     printf("Enter Number1#: \n");
     scanf("%d", &x);
