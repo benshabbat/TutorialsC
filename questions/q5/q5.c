@@ -98,7 +98,13 @@ int main()
                 left_racket_height = left_racket_height == min_y ? min_y : left_racket_height-1;
                 break;
             case 's':
-                left_racket_height = left_racket_height+size_racket >= max_y ? left_racket_height : left_racket_height+1;
+                left_racket_height = left_racket_height+size_racket > max_y ? left_racket_height : left_racket_height+1;
+                break;
+            case '8':
+                right_racket_height = right_racket_height == min_y ? min_y : right_racket_height-1;
+                break;
+            case '5':
+                right_racket_height = right_racket_height+size_racket > max_y ? right_racket_height : right_racket_height+1;
                 break;
             }
         }
