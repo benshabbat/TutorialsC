@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <ctype.h>
 
 void gotoxy(int x, int y)
 {
@@ -20,6 +21,7 @@ int main()
     int symbol_racket = 178;
     int size_racket = 8;
     char symbol_ball = 'O';
+    char symbol_ball2 = ' ';
 
     int ball_velocity_x = 1;
     int ball_velocity_y = 1;
@@ -63,7 +65,7 @@ int main()
         Sleep(100);
 
         gotoxy(ball_coord_x, ball_coord_y);
-        printf("%c", "");
+        printf("%c", symbol_ball2);
         ball_coord_x += ball_velocity_x;
         ball_coord_y += ball_velocity_y;
     }
