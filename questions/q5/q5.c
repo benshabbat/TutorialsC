@@ -17,6 +17,8 @@ int main()
 {
     int min_x = 0;
     int max_x = 79;
+    int min_y = 0;
+    int max_y = 25;
 
     int symbol_racket = 178;
     int size_racket = 8;
@@ -32,22 +34,6 @@ int main()
     while (true)
     {
 
-        if (ball_coord_x == 0)
-        {
-            ball_coord_x += ball_velocity_x;
-        }
-        if (ball_coord_x == max_x)
-        {
-            ball_coord_x -= ball_velocity_x;
-        }
-        if (ball_coord_y == size_racket)
-        {
-            ball_coord_y -= ball_velocity_y;
-        }
-        if (ball_coord_y == 0)
-        {
-            ball_coord_y += ball_velocity_y;
-        }
         for (int y = 0; y < size_racket; y++)
         {
             gotoxy(min_x, y);
@@ -64,8 +50,29 @@ int main()
 
         Sleep(100);
 
+
+
         gotoxy(ball_coord_x, ball_coord_y);
         printf("%c", symbol_ball2);
+
+        if (ball_coord_x == min_x)
+        {
+            ball_velocity_x*=-1;
+        }
+        else if (ball_coord_x == max_x)
+        {
+           ball_velocity_x*=-1;
+        }
+        else if (ball_coord_y == max_y)
+        {
+            ball_velocity_y*=-1;
+        }
+        else if (ball_coord_y == min_y)
+        {
+            ball_velocity_y*=-1;
+        }
+
+
         ball_coord_x += ball_velocity_x;
         ball_coord_y += ball_velocity_y;
     }
