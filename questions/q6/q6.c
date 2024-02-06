@@ -20,7 +20,7 @@ void reverse_sort(int array[], int size)
    }
 }
 
-void printArray(int array[], int size)
+void print_array(int array[], int size)
 {
    for(int i = 0; i < size; i++)
    {
@@ -32,11 +32,13 @@ int main()
     int size = 10;
     int array[size];
     // int size = sizeof(array) / sizeof(array[0]);
+
+    //insert data
     for(int i = 0; i < size; i++){
         printf("Enter the number %d# \n", i+1);
         scanf("%d", &array[i]);
     }
     reverse_sort(array, size);
-    printArray(array, size);
+    print_array(array, size);
     return 0;
 }
