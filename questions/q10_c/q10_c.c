@@ -26,30 +26,32 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     // uint8_t *current;
     if (a_size > b_size)
     {
-        for (int i = b_size; i < a_size; i++)
+        for (int i = a_size-b_size; i < a_size; i++)
         {
-            if (a + i != (b + count_b++))
+            if (*a + i != (*b + count_b))
             {
                 return flag = false;
             }
+            count_b++;
         }
     }
     else if (a_size < b_size)
     {
-        for (int i = a_size; i < b_size; i++)
+        for (int i =b_size-a_size; i < b_size; i++)
         {
-            if (b + i != (a + count_a++))
+            if (*b + i != (*a + count_a))
             {
                 return flag = false;
             }
-            // count_a++;
+            count_a++;
         }
     }
     else if (a_size == b_size)
     {
+       
         for (int i = 0; i < b_size; i++)
         {
-            if (b + i != (a + count_a++))
+            if (*b + i != *a + i)
             {
                 return flag = false;
             }
