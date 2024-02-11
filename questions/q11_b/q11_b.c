@@ -31,13 +31,19 @@ void my_strrev(char *str)
 
     void my_strrev(char *str)
     {
-        int length = strlen(str);
-        char temp;
+        // Find the length of the string 
+        int length = 0;
+        while (str[length] != '\0')
+        {
+            length++;
+        }
 
-        for (int i = 0, j = length - 1; i < j; i++, j--)
+        // Reverse the string
+        char temp;
+        for (int i = 0; i < length / 2; i++)
         {
             temp = str[i];
-            str[i] = str[j];
-            str[j] = temp;
+            str[i] = str[length - i - 1];
+            str[length - i - 1] = temp;
         }
     }
