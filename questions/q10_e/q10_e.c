@@ -1,26 +1,22 @@
 /*
-Write a function:
-void merge_sorted_arrays(int *a, size_t a_size, int *b, size_t b_size, int ** out_merged_array, size_t * output_size)
+Write a function:  
+void merge_sorted_arrays(int *a, size_t a_size, int *b, size_t b_size, int ** out_merged_array, size_t * output_size)  
+ 
 
+Note: you can assume that a and b are sorted 
 
-Note: you can assume that a and b are sorted
+Note: the output array (out_merged_array) should be allocated inside the function – this is why it’s a double pointer, and, you should also set the output_size variable to be the size of this internally allocated array. 
 
-Note: the output array (out_merged_array) should be allocated inside the function – this is why it’s a double pointer, and, you should also set the output_size variable to be the size of this internally allocated array.
+Output should be without duplicates 
 
-Output should be without duplicates
+You should use only pointer arithmetic, not indexes such as a[i]. 
 
-You should use only pointer arithmetic, not indexes such as a[i].
-
-Usage example:
-int a[] = {1,2,3}
-int b[] = {2,4,6,8}
-int * c; size_t c_size;
-merge_sorted_arrays(a, 3, b, 4, &c, &c_size);
-// Output: c == {1,2,3,4,6,8} ; c_size == 6;
-
-
-
-
+Usage example: 
+int a[] = {1,2,3} 
+int b[] = {2,4,6,8} 
+int * c; size_t c_size; 
+merge_sorted_arrays(a, 3, b, 4, &c, &c_size); 
+// Output: c == {1,2,3,4,6,8} ; c_size == 6; 
 */
 
 #include <stdio.h>
@@ -28,42 +24,50 @@ merge_sorted_arrays(a, 3, b, 4, &c, &c_size);
 
 void merge_sorted_arrays(int *a, size_t a_size, int *b, size_t b_size, int **out_merged_array, size_t *output_size)
 {
-    output_size = a_size + b_size;
-    *out_merged_array = malloc(sizeof(int) * *output_size);
-    int i = 0, j = 0, k = 0;
-    while (i < a_size && j < b_size)
-    {
-        if (a + i == b + j)
-        {
-            j++;
-            i++;
+  // Allocate memory for the merged array
+    *out_merged_array = (int *)malloc((a_size + b_size) * sizeof(int));
+    if (*out_merged_array == NULL) {
+        *output_size = 0;
+        return;
+    }
+
+    // Pointers to traverse arrays a, b, and the merged array
+    int *ptr_a = a;
+    int *ptr_b = b;
+    int *ptr_merged = *out_merged_array;
+
+    // Merge arrays a and b
+    while (ptr_a < a + a_size && ptr_b < b + b_size) {
+        if (*ptr_a < *ptr_b) {
+            *ptr_merged = *ptr_a;
+            ptr_a++;
+        } else if (*ptr_b < *ptr_a) {
+            *ptr_merged = *ptr_b;
+            ptr_b++;
+        } else { // If elements are equal, skip duplicates
+            *ptr_merged = *ptr_a;
+            ptr_a++;
+            ptr_b++;
         }
-        else if (a + i < b + j)
-        {
-            *out_merged_array + k = a + i;
-            k++;
-            i++;
-        }
-        else if (a + i > b + j)
-        {
-            *out_merged_array + k = b + j;
-            k++;
-            j++;
-        }
+        ptr_merged++;
     }
-    while (i < a_size)
-    {
-        *out_merged_array + k = a + i;
+
+    // Copy remaining elements from a, if any
+    while (ptr_a < a + a_size) {
+        *ptr_merged = *ptr_a;
+        ptr_a++;
+        ptr_merged++;
     }
-    while (j < b_size)
-    {
-        *out_merged_array + k = b + j;
+
+    // Copy remaining elements from b, if any
+    while (ptr_b < b + b_size) {
+        *ptr_merged = *ptr_b;
+        ptr_b++;
+        ptr_merged++;
     }
-    for (int i = 0; i < output_size; i++)
-    {
-        printf("%d ", out_merged_array + i);
-    }
-    free(out_merged_array);
+
+    // Calculate the size of the merged array
+    *output_size = ptr_merged - *out_merged_array;
 }
 
 int main()
