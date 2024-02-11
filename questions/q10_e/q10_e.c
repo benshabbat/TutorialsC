@@ -33,8 +33,12 @@ void merge_sorted_arrays(int *a, size_t a_size, int *b, size_t b_size, int **out
 
     // Pointers to traverse arrays a, b, and the merged array
     int *ptr_a = a;
+        printf("*ptr_a: %d\n",*ptr_a);
+        printf("a: %d\n",a);
     int *ptr_b = b;
+        printf("*ptr_b: %d\n",*ptr_b);
     int *ptr_merged = *out_merged_array;
+        printf("*ptr_merged: %d\n",*ptr_merged);
 
     // Merge arrays a and b
     while (ptr_a < a + a_size && ptr_b < b + b_size) {
