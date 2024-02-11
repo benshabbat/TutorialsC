@@ -67,6 +67,10 @@ void merge_sorted_arrays(int *a, size_t a_size, int *b, size_t b_size, int **out
     }
 
     // Calculate the size of the merged array
+    printf("ptr_merged: %d\n",ptr_merged);
+    printf("*out_merged_array: %d\n",*out_merged_array);
+  
+
     *output_size = ptr_merged - *out_merged_array;
 }
 
