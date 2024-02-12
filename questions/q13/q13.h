@@ -29,8 +29,8 @@ void time_free(Time* to_free);
 
 
 typedef struct DateTime_t {
-	Date date;
-	Time time;
+	Date* date;
+	Time* time;
 } DateTime;
 DateTime* datetime_create(Date* date, Time* time);
 const Date* datetime_get_date(const DateTime* dateTime);
@@ -48,11 +48,11 @@ typedef enum {
 
 // Struct for student information
 typedef struct Student_t {
-	DateTime birth_date;
-	const char* name; 
+	DateTime* birth_date;
+	char* name;
 	Track track;
 	uint8_t height;
-	const uint8_t* id;
+	uint8_t* id;
 } Student;
 
 // Function prototypes for student management

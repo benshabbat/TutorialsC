@@ -42,7 +42,7 @@ Date* date_create(int day, int month, int year)
 }
 
 int date_get_day(const Date* date) {
-    
+
     return date->day;
 }
 
@@ -104,16 +104,14 @@ DateTime* datetime_create(Date* date, Time* time)
     // Allocate memory for the DateTime struct
     DateTime* new_datetime = (DateTime*)malloc(sizeof(DateTime));
 
-    // Check if memory allocation was successful
     if (new_datetime == NULL) {
-        printf("Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
+        // Handle memory allocation failure
+        return NULL;
     }
-    Date* new_date = date;
-    Time* new_time = time;
-    // Assign the provided Date and Time pointers to the DateTime struct members
-    new_datetime->date = *new_date;
-    new_datetime->time = *new_time;
+
+    // Assign the provided Date and Time structs to the DateTime struct members
+    new_datetime->date = date;
+    new_datetime->time = time;
 
     // Return a pointer to the created DateTime struct
     return new_datetime;
@@ -168,9 +166,8 @@ Student* student_create(DateTime* birthDate, char* name, Track track, uint8_t he
         printf("Memory allocation failed.\n");
         exit(EXIT_FAILURE);
     }
-    DateTime* new_birth_date = birthDate;
     // Assign the provided Date and Time pointers to the DateTime struct members
-    new_student->birth_date = *new_birth_date;
+    new_student->birth_date = birthDate;
     new_student->name = name;
     new_student->track = track;
     new_student->height = height;
