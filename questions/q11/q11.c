@@ -26,79 +26,51 @@ substring_length = 32
 #include <stdio.h>
 #include <string.h>
 
-void find_longest_common_substring(
-    const char *str1,
-    const char *str2,
-    size_t *str1_substring_start_idx,
-    size_t *str2_substring_start_idx,
-    size_t *substring_length)
+void find_longest_common_substring(const char *str1, const char *str2, size_t *str1_substring_start_idx, size_t *str2_substring_start_idx, size_t *substring_length)
 {
 
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
-    int count = 0;
-    int biggest = 0;
-    int start_i = 0;
-    int start_j = 0;
+    size_t len1 = strlen(str1);
+    size_t len2 = strlen(str2);
 
-    if (len1 > len2)
-    {           //ASSASSAFFFDS
-                //adssaSSAFF
-        for (int i = 0; i < len1; i++)
-        {
-            for (int j = 0; j < len2; j++)
-            {
-                if (str1[i] == str2[j])
-                {
-                    str1_substring_start_idx = i;
-                    str2_substring_start_idx = j;
-                    count++;
-                    i++;
-                    j++;
-                    if (count > biggest)
-                    {
-                        biggest = count;
-                        start_i = i - count;
-                        start_j = j - count;
-                    }
-                }
-                else
-                {
-                    count = 0;
-                }
-            }
-        }
-    }
-    else
+    size_t **lcs = (size_t **)malloc((len1 + 1) * sizeof(size_t *));
+    for (size_t i = 0; i <= len1; i++)
     {
-        for (int i = 0; i < len2; i++)
-        {
-            for (int j = 0; j < len1; j++)
-            {
-                if (str1[i] == str2[j])
-                {
+        lcs[i] = (size_t *)malloc((len2 + 1) * sizeof(size_t));
+    }
 
-                    substring_length = count;
-                    str1_substring_start_idx = i;
-                    str2_substring_start_idx = j;
-                    count++;
-                    i++;
-                    j++;
-                    if (count > biggest)
-                    {
-                        biggest = count;
-                        start_i = i - count;
-                        start_j = j - count;
-                    }
-                }
-                else
+    size_t max_length = 0;
+    size_t end_position = 0;
+
+    for (size_t i = 0; i <= len1; i++)
+    {
+        for (size_t j = 0; j <= len2; j++)
+        {
+            if (i == 0 || j == 0)
+            {
+                lcs[i][j] = 0;
+            }
+            else if (str1[i - 1] == str2[j - 1])
+            {
+                lcs[i][j] = lcs[i - 1][j - 1] + 1;
+                if (lcs[i][j] > max_length)
                 {
-                    count = 0;
+                    max_length = lcs[i][j];
+                    end_position = i - 1;
                 }
+            }
+            else
+            {
+                lcs[i][j] = 0;
             }
         }
     }
-    str1_substring_start_idx=start_i;
-    str2_substring_start_idx=start_j;
-    substring_length=biggest;
+
+    *substring_length = max_length;
+    *str1_substring_start_idx = end_position - max_length + 1;
+    *str2_substring_start_idx = end_position - max_length + 1;
+    for (size_t i = 0; i <= len1; i++)
+    {
+        free(lcs[i]);
+    }
+    free(lcs);
 }
