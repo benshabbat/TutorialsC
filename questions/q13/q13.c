@@ -1,6 +1,6 @@
 #include "Question.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 
 void print_student_data(Student const* to_print) {
     if (to_print) {
@@ -29,7 +29,7 @@ Date* date_create(int day, int month, int year)
     // Check if memory allocation was successful
     if (new_date == NULL) {
         printf("Memory allocation failed.\n");
-
+        exit(EXIT_FAILURE);
     }
 
     // Initialize the Date struct members
@@ -38,7 +38,7 @@ Date* date_create(int day, int month, int year)
     new_date->year = year;
 
     // Return a pointer to the created Date struct
-    return new_date
+    return new_date;
 }
 
 int date_get_day(const Date* date) {
@@ -47,92 +47,139 @@ int date_get_day(const Date* date) {
 }
 
 int date_get_month(const Date* date) {
-    // TODO: Implement this function
     return date->month;
 }
 
 int date_get_year(const Date* date) {
-    // TODO: Implement this function
-    return 0;
+    return date->year;
 }
 
 void date_free(Date* to_free)
 {
+    free(to_free);
 }
 
 Time* time_create(int hour, int minute, int second)
 {
-    return NULL;
+    // Allocate memory for the Date struct
+    Time* new_time = (Time*)malloc(sizeof(Time));
+
+    // Check if memory allocation was successful
+    if (new_time == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Initialize the Time struct members
+    new_time->hour = hour;
+    new_time->minute = minute;
+    new_time->second = second;
+
+    // Return a pointer to the created Time struct
+    return new_time;
 }
 
 int time_get_hour(const Time* time) {
     // TODO: Implement this function
-    return 0;
+    return time->hour;
 }
 
 int time_get_minute(const Time* time) {
     // TODO: Implement this function
-    return 0;
+    return time->minute;
 }
 
 int time_get_second(const Time* time) {
     // TODO: Implement this function
-    return 0;
+    return time->second;
 }
 
 void time_free(Time* to_free)
 {
+    free(to_free);
 }
 
 DateTime* datetime_create(Date* date, Time* time)
 {
-    return NULL;
+    // Allocate memory for the DateTime struct
+    DateTime* new_datetime = (DateTime*)malloc(sizeof(DateTime));
+
+    // Check if memory allocation was successful
+    if (new_datetime == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(EXIT_FAILURE);
+    }
+    Date* new_date = date;
+    Time* new_time = time;
+    // Assign the provided Date and Time pointers to the DateTime struct members
+    new_datetime->date = *new_date;
+    new_datetime->time = *new_time;
+
+    // Return a pointer to the created DateTime struct
+    return new_datetime;
 }
 
 const Date* datetime_get_date(const DateTime* dateTime) {
-    // TODO: Implement this function
-    return NULL;
+
+    return &(dateTime->date);
 }
 
 const Time* datetime_get_time(const DateTime* dateTime) {
     // TODO: Implement this function
-    return NULL;
+    return &(dateTime->time);
 }
 
 void datetime_free(DateTime* to_free)
 {
+    free(to_free);
 }
 
 const char* student_get_name(const Student* student) {
     // TODO: Implement this function
-    return NULL;
+    return student->name;
 }
 
 const DateTime* student_get_birth_date(const Student* student) {
     // TODO: Implement this function
-    return NULL;
+    return &(student->birth_date);
 }
 
 const Track student_get_track(const Student* student) {
     // TODO: Implement this function
-    return TODO_FILL_MY_VALUES;
+    return student->track;
 }
 
 uint8_t student_get_height(const Student* student) {
     // TODO: Implement this function
-    return 0;
+    return student->height;
 }
 
 const uint8_t* student_get_id(const Student* student) {
     // TODO: Implement this function
-    return NULL;
+    return student->id;
 }
 
 Student* student_create(DateTime* birthDate, char* name, Track track, uint8_t height, uint8_t* id) {
-    // TODO: Implement this function
-    return NULL;
+    // Allocate memory for the DateTime struct
+    Student* new_student = (DateTime*)malloc(sizeof(DateTime));
+
+    // Check if memory allocation was successful
+    if (new_student == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(EXIT_FAILURE);
+    }
+    DateTime* new_birth_date = birthDate;
+    // Assign the provided Date and Time pointers to the DateTime struct members
+    new_student->birth_date = *new_birth_date;
+    new_student->name = name;
+    new_student->track = track;
+    new_student->height = height;
+    new_student->id = id;
+
+    // Return a pointer to the created DateTime struct
+    return new_student;
 }
 
 void student_free(Student* to_free) {
-    // TODO: Implement this function
+    free(to_free);
 }
