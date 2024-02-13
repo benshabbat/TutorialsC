@@ -17,6 +17,8 @@ int main()
 
    z = x & y;
    printf("AND = %d\n", z);
+   z = 23 & 1;
+   printf("AND = %d\n", z);
 
    z = x | y;
    printf("OR = %d\n", z);
