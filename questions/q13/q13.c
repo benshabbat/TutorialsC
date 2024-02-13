@@ -1,6 +1,8 @@
 #include "Question.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 void print_student_data(Student const* to_print) {
     if (to_print) {
@@ -24,6 +26,7 @@ void print_student_data(Student const* to_print) {
 Date* date_create(int day, int month, int year)
 {
     Date* new_date = malloc(sizeof(Date));
+    if (day > 30 || month > 12)return NULL;
     if (new_date) {
         new_date->day = day;
         new_date->month = month;
@@ -53,6 +56,7 @@ void date_free(Date* to_free)
 Time* time_create(int hour, int minute, int second)
 {
     Time* new_time = malloc(sizeof(Date));
+    if (hour > 24 || minute > 59||second>59)return NULL;
     if (new_time) {
         new_time->hour = hour;
         new_time->minute = minute;
@@ -83,7 +87,12 @@ void time_free(Time* to_free)
 
 DateTime* datetime_create(Date* date, Time* time)
 {
+    if (date == NULL) {
+        return NULL; // Invalid date
+    }
+
     DateTime* new_datetime = malloc(sizeof(DateTime));
+ 
     if (new_datetime) {
         new_datetime->date = date;
         new_datetime->time = time;
@@ -93,12 +102,12 @@ DateTime* datetime_create(Date* date, Time* time)
 
 const Date* datetime_get_date(const DateTime* dateTime) {
 
-    return dateTime ? dateTime->date : NULL;
+    return dateTime->date ? dateTime->date : NULL;
 }
 
 const Time* datetime_get_time(const DateTime* dateTime) {
     // TODO: Implement this function
-    return dateTime ? dateTime->time : NULL;
+    return dateTime->time ? dateTime->time : NULL;
 }
 
 void datetime_free(DateTime* to_free)
@@ -136,10 +145,14 @@ const uint8_t* student_get_id(const Student* student) {
 }
 
 Student* student_create(DateTime* birthDate, char* name, Track track, uint8_t height, uint8_t* id) {
+
+    if (name == NULL || strlen(name) == 0) {
+        return NULL; 
+    }
     Student* new_student = malloc(sizeof(Student));
     if (new_student) {
         new_student->birth_date = birthDate;
-        new_student->name = name; 
+        new_student->name = name;
         new_student->track = track;
         new_student->height = height;
         memcpy(new_student->id, id, 9 * sizeof(uint8_t));
@@ -150,7 +163,6 @@ Student* student_create(DateTime* birthDate, char* name, Track track, uint8_t he
 void student_free(Student* to_free) {
     if (to_free) {
         datetime_free(to_free->birth_date);
-        free(to_free->name);
         free(to_free);
     }
 }
