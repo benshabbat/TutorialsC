@@ -7,16 +7,26 @@ That returns the first index of “what_to_search” in the given array, or if i
 #include <stdio.h>
 #include <stdint.h>
 
+// int find_in_array(int *a, size_t a_size, int what_to_search)
+// {
+//     for (int i = 0; i < a_size; i++)
+//     {
+//         int *current = a + i;
+//         if (what_to_search == *current)
+//             return i;
+//     }
+
+//     return -1;
+// }
+//option2 
 int find_in_array(int *a, size_t a_size, int what_to_search)
 {
+    int *last_element = a + a_size;
 
-    for (int i = 0; i < a_size; i++)
-    {
-        int *current = a + i;
-        if (what_to_search == *current)
-            return i;
+    while(0<a_size){
+        if(*(--last_element) ==what_to_search)return 1;
+        a_size--;
     }
-
     return -1;
 }
 
