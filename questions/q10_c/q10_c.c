@@ -60,7 +60,24 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     }
     return flag;
 }
-
+//option 2 better
+bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size) {
+    if (b_size > a_size) {
+        return false;
+    }
+    
+    uint8_t *a_end = a + a_size;
+    uint8_t *b_end = b + b_size;
+    
+    while (b_size > 0) {
+        if (*(--a_end) != *(--b_end)) {
+            return false;
+        }
+        b_size--;
+    }
+    
+    return true;
+}
 int main()
 {
     size_t a_size, b_size;
