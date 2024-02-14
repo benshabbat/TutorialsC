@@ -13,6 +13,18 @@ void reverse_array(int *array_first_element, int *array_last_element, size_t siz
         printf("%d ", *array_last_element);
     }
 }
+// option 2
+void reverse_array(int *array_first_element, int *array_last_element, size_t size) {
+    
+    int temp;
+    while (array_first_element < array_last_element) {
+        temp = *array_first_element;
+        *array_first_element = *array_last_element;
+        *array_last_element = temp;
+        array_first_element++;
+        array_last_element--;
+    }
+}
 
 int main() {
     int arr_size, i;
