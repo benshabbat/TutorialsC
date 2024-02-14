@@ -26,7 +26,7 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     // uint8_t *current;
     if (a_size > b_size)
     {
-        for (int i = a_size-b_size; i < a_size; i++)
+        for (int i = a_size - b_size; i < a_size; i++)
         {
             if (*a + i != (*b + count_b))
             {
@@ -37,7 +37,7 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     }
     else if (a_size < b_size)
     {
-        for (int i =b_size-a_size; i < b_size; i++)
+        for (int i = b_size - a_size; i < b_size; i++)
         {
             if (*b + i != (*a + count_a))
             {
@@ -48,7 +48,7 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     }
     else if (a_size == b_size)
     {
-       
+
         for (int i = 0; i < b_size; i++)
         {
             if (*b + i != *a + i)
@@ -60,22 +60,36 @@ bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
     }
     return flag;
 }
-//option 2 better
-bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size) {
-    if (b_size > a_size) {
-        return false;
-    }
-    
+// option 2 better
+bool is_ends_with(uint8_t *a, size_t a_size, uint8_t *b, size_t b_size)
+{
+
     uint8_t *a_end = a + a_size;
     uint8_t *b_end = b + b_size;
-    
-    while (b_size > 0) {
-        if (*(--a_end) != *(--b_end)) {
-            return false;
+    if (b_size > a_size)
+    {
+        while (a_size > 0)
+        {
+            if (*(--a_end) != *(--b_end))
+            {
+                return false;
+            }
+            a_size--;
         }
-        b_size--;
     }
-    
+    else
+    {
+
+        while (b_size > 0)
+        {
+            if (*(--a_end) != *(--b_end))
+            {
+                return false;
+            }
+            b_size--;
+        }
+    }
+
     return true;
 }
 int main()
