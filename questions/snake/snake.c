@@ -11,6 +11,17 @@
 #include <time.h>
 #include <stdlib.h>
 
+
+void gotoxy(int x, int y)
+{
+
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorPosition(consoleHandle, coord);
+}
+
 /// /// /// /// Your best friend for debuggnign: /// /// /// /// 
 void print_snake(snake_t snake, size_t snake_size)
 {
@@ -94,11 +105,20 @@ void clear_snake(snake_t snake, size_t snake_size)
 
 snake_t create_snake(uint8_t x, uint8_t y)
 {
-	return NULL;
+	snake_t snake = (snake_t)malloc(sizeof(uint8_t*));
+	if (snake == NULL)return NULL;
+	snake[0] = (uint8_t*)malloc(2 * sizeof(uint8_t));
+	if (snake[0] == NULL)return NULL;
+	snake[0][0] = x;
+	snake[0][1] = y;
+	return snake;
 }
 void free_snake(snake_t snake, size_t snake_size)
 {
-	// TODO !
+	for (size_t i = 0; i < snake_size; ++i) {
+		free(snake[i]);
+	}
+	free(snake);
 }
 
 uint8_t* snake_head(snake_t snake, size_t snake_size)
@@ -114,6 +134,7 @@ void get_next_snake_head_location(snake_t snake, size_t snake_size, direction_t 
 }
 size_t grow_snake(snake_t* snake_ptr, size_t snake_size, direction_t direction)
 {
+	*snake_ptr = malloc(sizeof(snake_t*) * snake_size);
 	return 0;
 }
 
