@@ -22,6 +22,7 @@ int main()
     //*(x+1) == x[1];
     // x[1] = 56;
     // *(x + 1) = 44;
+    //&(*(x+1))==&X[1]
     printf("Enter a number");
     scanf("%d", &(*(x+1)));
     printf("*(x+1) %d", x[1]);
