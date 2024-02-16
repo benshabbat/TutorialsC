@@ -8,13 +8,22 @@ int main()
     // printf("pointer %p p_p %p",p_x,p_p_x );
 
     // ex 2
+    // int x[5];
+
+    // //*(x+1) == x[1];
+    // x[1] = 56;
+    // *(x + 1) = 44;
+
+    // printf("*(x+1) %d", x[1]);
+
+    // ex 3
     int x[5];
 
     //*(x+1) == x[1];
-    x[1] = 56;
-    *(x + 1) = 44;
-
-    // p_x+=1;
+    // x[1] = 56;
+    // *(x + 1) = 44;
+    printf("Enter a number");
+    scanf("%d", &(*(x+1)));
     printf("*(x+1) %d", x[1]);
 
     return 0;
