@@ -4,6 +4,7 @@
 
 void tolower_str(char *s) {
     while (*s) {
+        if(*s == isupper(*s)) s++;
         *s = tolower(*s);
         s++;
     }
