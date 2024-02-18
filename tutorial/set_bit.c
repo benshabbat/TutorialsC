@@ -23,5 +23,6 @@ int main()
     int pos = 4;              // position to set
     num |= (1 << pos);
     printbits(num); // print
+
     return 0;
 }
