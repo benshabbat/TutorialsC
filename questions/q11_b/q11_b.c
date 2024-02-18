@@ -25,25 +25,19 @@ Use it only if you understand it 😉
 
 void my_strrev(char *str)
 {
-
-#include "Question.h"
-#include <stdio.h>
-
-    void my_strrev(char *str)
+    // Find the length of the string
+    int length = 0;
+    while (str[length] != '\0')
     {
-        // Find the length of the string 
-        int length = 0;
-        while (str[length] != '\0')
-        {
-            length++;
-        }
-
-        // Reverse the string
-        char temp;
-        for (int i = 0; i < length / 2; i++)
-        {
-            temp = str[i];
-            str[i] = str[length - i - 1];
-            str[length - i - 1] = temp;
-        }
+        length++;
     }
+
+    // Reverse the string
+    char temp;
+    for (int i = 0; i < length / 2; i++)
+    {
+        temp = str[i];
+        str[i] = str[length - i - 1];
+        str[length - i - 1] = temp;
+    }
+}
