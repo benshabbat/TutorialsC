@@ -12,7 +12,11 @@ int main()
     if (memchr(arr1, 2, sizeof(arr1)) != NULL)
     {
         printf("the number into arr1");
+        printf(memchr(arr1, 2, sizeof(arr1)));
     }
     else
+    {
+        memchr(arr1, 3, sizeof(arr1));
         printf("the number dosent into arr1");
+    }
 }
