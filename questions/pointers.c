@@ -45,6 +45,7 @@ int main()
 
     // ex5
     int rows, cols;
+    // int **matrix;
 
     // Ask the user for the dimensions of the matrix
     printf("Enter the number of rows: ");
@@ -53,16 +54,17 @@ int main()
     scanf("%d", &cols);
 
     // Dynamically allocate memory for the matrix
+    // matrix = (int **)malloc(rows * sizeof(int *));
     int **matrix = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
-        matrix[i] = (int *)malloc(cols * sizeof(int));
+        *(matrix+i) = (int *)malloc(cols * sizeof(int));
     }
 
     // Read values into the matrix from the user
     printf("Enter the elements of the matrix:\n");
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            scanf("%d", &matrix[i][j]);
+            scanf("%d", &(*(matrix[i]+j)));
         }
     }
 
@@ -70,14 +72,15 @@ int main()
     printf("The matrix is:\n");
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            printf("%d ", matrix[i][j]);
+            // printf("%d ", (*(*(matrix+i)+j)));
+            printf("%d ", *(matrix[i] + j));
         }
         printf("\n");
     }
 
     // Free the dynamically allocated memory
     for (int i = 0; i < rows; i++) {
-        free(matrix[i]);
+        free(*(matrix+i));
     }
     free(matrix);
     return 0;
