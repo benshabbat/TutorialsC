@@ -17,7 +17,7 @@ int main()
 
    z = x & y;
    printf("AND = %d\n", z);
-   z = 23 & 1;
+   z = 22 & 1;
    printf("AND = %d\n", z);
 
    z = x | y;

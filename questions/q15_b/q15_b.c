@@ -1,10 +1,10 @@
-#include "Question.h"
+#include <stdio.h>
 
 // Function definition - students are required to complete this function
-uint32_t reverseBits(uint32_t n)
+int reverseBits(int n)
 {
 
-    uint32_t reversed = 0;
+    int reversed = 0;
     int bitPosition = 31;
     while (n)
     {
@@ -15,4 +15,25 @@ uint32_t reverseBits(uint32_t n)
 
     // TODO: Implement the function to reverse the bits of 'n'
     return reversed; // Placeholder return, to be replaced by actual implementation
+}
+void printbits(int input){
+    int i, mask;
+
+    for(i=31; i >= 0; i--){
+       mask = 1 << i;
+       if(input & mask){
+          printf("1");
+       }else{
+          printf("0");
+       }
+    }
+ }
+
+int main()
+{
+    int num = 1;
+    num = reverseBits(num);
+    printbits(num);
+    // printf("%08x\n", num);
+    return 0;
 }
