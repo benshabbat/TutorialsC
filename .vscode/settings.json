@@ -2,7 +2,8 @@
     "files.associations": {
         "conio.h": "c",
         "stdio.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "stdlib.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
