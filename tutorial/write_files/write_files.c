@@ -3,7 +3,7 @@
 int main()
 {
    // WRITE/APPEND A FILE
-   FILE *pF = fopen("C:\\Users\\Cakow\\Desktop\\test.txt", "w");
+   FILE *pF = fopen("test.txt", "w");
 
    fprintf(pF, "Spongebob Squarepants");
 
