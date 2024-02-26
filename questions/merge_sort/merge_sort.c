@@ -8,8 +8,8 @@ void merge(int arr[], int left, int mid, int right)
     int n1 = mid - left + 1;
     int n2 = right - mid;
     int a[n1], b[n2];
-    memcpy(a, arr[left], sizeof(int) * n1);
-    memcpy(b, arr[mid + 1], sizeof(int) * n2);
+    memcpy(a, &arr[left], sizeof(int) * n1);
+    memcpy(b, &arr[mid + 1], sizeof(int) * n2);
     // Complete the implementation here:
     // START
     i = 0;
@@ -29,6 +29,7 @@ void merge(int arr[], int left, int mid, int right)
                 arr[k] = b[j++];
             }
         }
+        else break;
     }
     while (i < n1)
     {
