@@ -1,53 +1,49 @@
 #include "Question.h"
 
-void merge(int arr[], int left, int mid, int right)
-{
-    // Merge arr[left:mid] and arr[mid+1:right] in a sorted way
+void merge(int arr[], int left, int mid, int right) { 
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
-    int a[n1], b[n2];
+
+    int L[n1], R[n2];
 
     for (i = 0; i < n1; i++)
-        a[i] = arr[left + i];
+        L[i] = arr[left + i];
     for (j = 0; j < n2; j++)
-        b[j] = arr[mid + 1 + j];
-    // Complete the implementation here:
-    // START
+        R[j] = arr[mid + 1 + j];
+
     i = 0;
     j = 0;
     k = left;
     while (i < n1 && j < n2) {
-        if (a[i] <= b[j]) {
-            arr[k] = b[i];
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
             i++;
         } else {
-            arr[k] = a[j];
+            arr[k] = R[j];
             j++;
         }
         k++;
     }
-    while (i < n1)
-    {
-        arr[k++] = a[i++];
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
     }
-    while (j < n2)
-    {
-        arr[k++] = b[j++];
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
     }
-    // END
 }
 
-void mergeSort(int arr[], int left, int right)
-{
-    if (left < right)
-    {
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
         int mid = (left + right) / 2;
-        // Complete the implementation here:
-        // START
-
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
         merge(arr, left, mid, right);
-
-        // END
     }
 }
