@@ -2,12 +2,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool has_two_numbers_with_sum(float *arr, int size, float num)
+bool has_two_numbers_with_sum(float *arr,int size, float num)
 {
     int last_idx = size - 1;
     int first_idx = 0;
     while (first_idx < last_idx)
     {
+
         float sum = arr[first_idx] + arr[last_idx];
 
         if (sum == num)
@@ -30,14 +31,13 @@ int main()
 {
     float num = 9.5;
     float arr[4] = {4, 5, 5.5, 6};
-    bool res = has_two_numbers_with_sum(arr, 4, num);
+    bool res = has_two_numbers_with_sum(arr,4, num);
     if (res)
     {
 
         printf("True");
     }
-    else
-    {
+    else{
         printf("False");
     }
 
