@@ -5,11 +5,11 @@ long long mergeAndCount(int arr[], int left, int mid, int right) {
     long long count=0;
     // Complete the implementation here:
     // START
-    int i,j,k;
+    int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-        int L[n1], R[n2];
+    int L[n1], R[n2];
 
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
@@ -25,7 +25,7 @@ long long mergeAndCount(int arr[], int left, int mid, int right) {
             i++;
         } else {
             arr[k] = R[j];
-            count++;
+            count += n1 - i; 
             j++;
         }
         k++;
