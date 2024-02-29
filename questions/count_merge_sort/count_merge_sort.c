@@ -1,11 +1,15 @@
 #include "Question.h"
 
-void merge(int arr[], int left, int mid, int right) { 
-    int i, j, k;
-    int n1 = mid - left + 1;
+// Function to merge two sorted arrays and count inversions
+long long mergeAndCount(int arr[], int left, int mid, int right) {
+    long long count=0;
+    // Complete the implementation here:
+    // START
+    int i,j,k;
+    int n1 = left + mid-1;
     int n2 = right - mid;
 
-    int L[n1], R[n2];
+        int L[n1], R[n2];
 
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
@@ -21,6 +25,7 @@ void merge(int arr[], int left, int mid, int right) {
             i++;
         } else {
             arr[k] = R[j];
+            count++;
             j++;
         }
         k++;
@@ -37,13 +42,28 @@ void merge(int arr[], int left, int mid, int right) {
         j++;
         k++;
     }
+    // END
+
+    return count;
 }
 
-void mergeSort(int arr[], int left, int right) {
+// Recursive function to perform merge sort and count inversions
+long long mergeSortAndCount(int arr[], int left, int right) {
+    long long count = 0;
+    // Complete the implementation here:
+    // START
     if (left < right) {
         int mid = (left + right) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        count+=mergeSortAndCount(arr, left, mid);
+        count+=mergeSortAndCount(arr, mid + 1, right);
+        count+=mergeAndCount(arr, left, mid, right);
     }
+    // END
+    return count;
+}
+
+// Function to initialize the merge sort process
+long long countInversions(int arr[], int n) {
+    long long result = mergeSortAndCount(arr, 0, n - 1);
+    return result;
 }
