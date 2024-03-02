@@ -1,5 +1,7 @@
 #include "Question.h"
-
+void swap(int *x, int *y){
+    
+}
 // Function to partition the array and return the pivot index
 int partition(int arr[], int low, int high) {
     int pivot = arr[high]; // Choose the last element as the pivot
