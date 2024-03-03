@@ -5,7 +5,7 @@
 int main(){
 
     char **strings;
-    int total;
+    int total=0;
 
     printf("Enter a number total of Strings");
     scanf("%d", &total);
