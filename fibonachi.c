@@ -35,8 +35,11 @@ void fib(int n)
 int main()
 {
 
-    int length = 10;
+    printf("normal\n");
+    fib(100);
+    int length = 100;
     int x;
+    printf("\n");
     printf("Recursion\n");
     for (int i = 0; i < length; i++)
     {
@@ -48,8 +51,5 @@ int main()
         else
             printf("%d", x);
     }
-    printf("\n");
-    printf("normal\n");
-    fib(10);
     return 0;
 }
