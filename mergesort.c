@@ -1,80 +1,73 @@
 #include <stdio.h>
 
-void merge(int *arr, int length);
+void merge_sort(int *arr, int length);
 void merge_sort_recursion(int *arr, int left, int right);
-void merge_sorted_array(int *arr, int left, int middle, int right);
+void merge_sorted_arrays(int *arr, int left, int mid, int right);
 
 int main()
 {
+    int array[] = {9, 4, 8, 1, 7, 0, 3, 2, 5, 6};
+    int length = 10;
 
-    int arr[] = {4, 5, 2, 3, 1, 7, 8, 9};
-    int length = sizeof(arr) / sizeof(arr[0]);
-    merge(arr, length);
+    merge_sort(array, length);
+
     for (int i = 0; i < length; i++)
-    {
-        printf("%d ", arr[i]);
-    }
+        printf("%d ", array[i]);
+    printf("\n");
+
     return 0;
 }
-void merge(int *arr, int length)
+
+void merge_sort(int *arr, int length)
 {
+
     merge_sort_recursion(arr, 0, length - 1);
 }
+
 void merge_sort_recursion(int *arr, int left, int right)
 {
-    int m = (right - left) / 2;
+
     if (left < right)
     {
 
-        merge_sort_recursion(arr, left, m);
-        merge_sort_recursion(arr, m + 1, right);
-        merge_sorted_array(arr, left, m, right);
+        int mid = left + (right - left) / 2;
+
+        merge_sort_recursion(arr, left, mid);
+        merge_sort_recursion(arr, mid + 1, right);
+
+        merge_sorted_arrays(arr, left, mid, right);
     }
 }
-void merge_sorted_array(int *arr, int left, int middle, int right)
+void merge_sorted_arrays(int *arr, int left, int mid, int right)
 {
-    int left_length = middle - left + 1;
-    int right_length = right - middle;
+    int left_length = mid - left + 1;
+    int right_length = right - mid;
 
     int temp_left[left_length];
     int temp_right[right_length];
 
     int i, j, k;
 
-    for (i = 0; i < left_length; i++)
+    for (int i = 0; i < left_length; i++)
         temp_left[i] = arr[left + i];
-    for (j = 0; j < right_length; j++)
-        temp_right[j] = arr[middle + 1 + j];
 
-    i = 0;
-    j = 0;
-    k = left;
-    while (i < left_length && j < right_length)
+    for (int i = 0; i < right_length; i++)
+        temp_right[i] = arr[mid + 1 + i];
+
+    for (i = 0, j = 0, k = left; k <= right; k++)
     {
-        if (temp_left[i] <= temp_right[j])
+
+        if ((i < left_length) &&
+            (j >= right_length || temp_left[i] <= temp_right[j]))
         {
             arr[k] = temp_left[i];
             i++;
         }
+
         else
         {
             arr[k] = temp_right[j];
             j++;
         }
-        k++;
-    }
-
-    while (i < left_length)
-    {
-        arr[k] = temp_left[i];
-        i++;
-        k++;
-    }
-
-    while (j < right_length)
-    {
-        arr[k] = temp_right[j];
-        j++;
-        k++;
     }
 }
