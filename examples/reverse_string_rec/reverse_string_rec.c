@@ -11,13 +11,14 @@ char *reverse_string_rec(char *string, int len)
     if (len <= 0)
         return string; // Base case: return the original string
     swap(string, string + len - 1);
-    //hello //oellh
-    //ell //lle
-    //l //l
-    //len = -1 return the string
+    // hello //oellh
+    // ell //lle
+    // l //l
+    // len = -1 return the string
 
     return reverse_string_rec(string + 1, len - 2); // Recursive call
 }
+
 
 int main()
 {
