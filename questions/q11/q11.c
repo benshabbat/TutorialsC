@@ -1,6 +1,6 @@
-#include "Question.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void find_longest_common_substring(
     const char* str1,
@@ -43,4 +43,19 @@ void find_longest_common_substring(
         free(dp[i]);
     }
     free(dp);
+}
+
+int main() {
+    const char *str1 = "we are learning c language we are practicing the string library today";
+    const char *str2 = "we love practicing the string library functions in c language";
+
+    size_t str1_substring_start_idx, str2_substring_start_idx, substring_length;
+
+    find_longest_common_substring(str1, str2, &str1_substring_start_idx, &str2_substring_start_idx, &substring_length);
+
+    printf("str1_substring_start_idx = %zu\n", str1_substring_start_idx);
+    printf("str2_substring_start_idx = %zu\n", str2_substring_start_idx);
+    printf("substring_length = %zu\n", substring_length);
+
+    return 0;
 }
