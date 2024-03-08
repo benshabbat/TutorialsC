@@ -1,39 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int *counting_sort(int *a, int size)
-{
-    int max = a[0];
-    for (int i = 1; i < size; i++)
-    {
-        if (a[i] > max)
-        {
-            max = a[i];
-        }
-    }
-    int *c_arr = (int *)calloc(max + 1, sizeof(int)); // Allocate memory for the count array
-    if (c_arr == NULL)
-    {
-        printf("Memory allocation failed\n");
-        return NULL;
+void counting_sort(int arr[], int n) {
+    // Complete the implementation here:
+    // START
+    if (n <= 1) {
+        return;
     }
 
-    for (int i = 0; i < size; i++)
-    {
-        c_arr[a[i]]++; // Increment the count for the current element
-    }
-
-    int index = 0;
-    for (int i = 0; i < 10; i++)
-    {
-        for (int j = 0; j < c_arr[i]; j++)
-        {
-            a[index++] = i; // Fill the original array with sorted elements
+    // Find the maximum element in the array
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
         }
     }
 
-    free(c_arr); // Free the memory allocated for the count array
-    return a;
+    // Create a count array of size max+1 and initialize all elements to 0
+    int *count = (int *)calloc(max + 1, sizeof(int));
+
+    // Store the count of each element in the count array
+    for (int i = 0; i < n; i++) {
+        count[arr[i]]++;
+    }
+
+    // Modify the count array to store the sum of previous counts
+    for (int i = 1; i <= max; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Create a temporary array to store the sorted output
+    int *output = (int *)malloc(n * sizeof(int));
+
+    // Traverse the input array from right to left
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    // Copy the sorted elements from the temporary array back to the original array
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
+
+    // Free dynamically allocated memory
+    free(count);
+    free(output);
+    // END
 }
 
 int main()
