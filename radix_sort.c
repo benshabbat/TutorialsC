@@ -23,6 +23,17 @@ void countingSort(int arr[], int n, int exp) {
 
     // Complete the implementation here:
     // START
+    for(int i = 0 ; i < n;i++){
+        count[(arr[i]/exp)%10]++;
+    }
+    for(int i = 0 ; i < n;i++){
+        count[i+1]+=count[i];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
 
     // END
 
@@ -40,7 +51,7 @@ void radixSort(int arr[], int n) {
     for (int exp = 1; max / exp > 0; exp *= 10) {
         // Complete the implementation here:
         // START
-
+        countingSort(arr, n, exp);
         // END
     }
 }
