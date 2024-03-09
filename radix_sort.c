@@ -5,8 +5,10 @@ int getMax(int arr[], int n) {
     // Complete the implementation here:
     // START
     int max = arr[0];
-    for(int i = 1; i < n; i++){
-        if (max<arr[i])max = arr[i];       
+    for (int i = 1; i < n; i++)
+    {
+        if (max < arr[i])
+            max = arr[i];
     }
     return max;
     // END
@@ -23,18 +25,20 @@ void countingSort(int arr[], int n, int exp) {
 
     // Complete the implementation here:
     // START
-    for(int i = 0 ; i < n;i++){
-        count[(arr[i]/exp)%10]++;
+    for (int i = 0; i < n; i++)
+    {
+        count[(arr[i] / exp) % 10]++;
     }
-    for(int i = 0 ; i < n;i++){
-        count[i+1]+=count[i];
-    }
-
-    for (int i = n - 1; i >= 0; i--) {
-        output[count[arr[i]] - 1] = arr[i];
-        count[arr[i]]--;
+    for (int i = 0; i < RADIX; i++)
+    {
+        count[i + 1] += count[i];
     }
 
+    for (int i = n - 1; i >= 0; i--)
+    {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
     // END
 
     // Copy the sorted array back to the original array
