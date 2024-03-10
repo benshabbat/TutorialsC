@@ -20,16 +20,19 @@ Node *create_Node(int value)
     return new_node;
 }
 
-void add_Node(Node **head, Node *node)
+void add_Node(Node **head,  Node *new_node)
 {
-    if (*head == NULL)
-    {
-        *head = node;
-        return;
+    Node* current = *head;
+    Node* prev = NULL;
+    while(current->next !=NULL){
+        if(new_node->value<current->value)break;
+        prev = current;
+        current = current->next;
     }
-
-    node->next = *head;
-    *head = node;
+    if(prev == NULL){
+        new_node->next = *head;
+        *head = new_node;
+    }
 }
 
 int main()
@@ -37,11 +40,14 @@ int main()
     Node *head = NULL;
     Node *new_node = create_Node(4);
     Node *new_node2 = create_Node(6);
+    Node *new_node3 = create_Node(2);
 
     printf("%d\n", new_node->value);
     printf("%d\n", new_node2->value);
-    add_Node(&head, new_node);
+    printf("%d\n", new_node3->value);
+    add_Node(&head, new_node3);
     add_Node(&head, new_node2);
+    add_Node(&head, new_node);
 
     // Print the value of the first node
     printf("%d\n", head->value);
