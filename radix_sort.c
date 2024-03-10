@@ -1,5 +1,5 @@
-#include "Question.h"
 #include <stdbool.h>
+#include <stdio.h>
 // Function to find the maximum number in the array
 int getMax(int arr[], int n) {
     // Complete the implementation here:
@@ -58,4 +58,25 @@ void radixSort(int arr[], int n) {
         countingSort(arr, n, exp);
         // END
     }
+}
+
+int main() {
+    int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    radixSort(arr, n);
+    
+    printf("Sorted array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
 }
