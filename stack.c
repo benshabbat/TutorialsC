@@ -2,34 +2,50 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef struct{
+typedef struct
+{
     int *array;
     int capacity;
     int size;
-}Stack;
+} Stack;
 
-Stack *create_stack(int capacity){
-
+Stack *create_stack(int capacity)
+{
+    if (capacity <= 0)
+        return NULL;
+    Stack *stack = malloc(sizeof(Stack));
+    if (stack == NULL)
+        return NULL;
+    stack->array = malloc(capacity * sizeof(Stack));
+    if (stack->array == NULL)
+    {
+        free(stack);
+        return NULL;
+    }
 }
-void destroy_stack(Stack *stack){
-
+void destroy_stack(Stack *stack)
+{
 }
 
-bool is_empty(Stack *stack){
-
+bool is_empty(Stack *stack)
+{
 }
 
-bool is_full(Stack *stack){
-
+bool is_full(Stack *stack)
+{
 }
 
-void push(int value) {
-    
+bool push(Stack *stack, int item)
+{
 }
 
-void pop() {
-
+bool pop(Stack *stack, int *item)
+{
 }
-int main(){
+bool peek(Stack *stack, int *item)
+{
+}
+int main()
+{
     return 0;
 }
