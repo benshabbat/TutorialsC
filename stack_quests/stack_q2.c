@@ -73,6 +73,17 @@ char *removeStarsFromString(const char *str)
 {
     // Complete the implementation here:
     // START
-    
+    struct Stack* stack = createStack();
+    int len = strlen(str);
+    for(int i =0;i<len;i++)
+    {
+        if (cmp(str[i], '*') == 0)
+        {
+            pop(stack);
+        }
+        push(stack, str[i]);
+    }
+    strcpy(str, stack);
+    return str;
     // END
 }
