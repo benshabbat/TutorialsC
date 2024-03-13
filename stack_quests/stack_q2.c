@@ -59,43 +59,31 @@ char peek(struct Stack* stack) {
 }
 
 
-
 char* removeStarsFromString(const char* str) {
+    // Complete the implementation here:
+    // START
     struct Stack* stack = createStack();
     int len = strlen(str);
-    char* result = (char*)malloc((len + 1) * sizeof(char));
-    int index = 0;
-
-    for (int i = 0; i < len; ++i) {
-        if (str[i] != '*') {
-            push(stack, str[i]);
-        }
-        else {
-            if (!isEmpty(stack)) {
-                pop(stack); // Remove the closest non-star character
-            }
-        }
+    for (int i = 0; i < len; i++) {
+    	if (str[i] != '*') {
+    		push(stack, str[i]);
+    	}
+    	else {
+    		 pop(stack);
+    	}
     }
-
-    // Construct the resulting string
-    while (!isEmpty(stack)) {
-        result[index++] = pop(stack);
+    int size = getSize(stack);
+    char* new_s = malloc(size);
+    
+    if (new_s != NULL) {
+    	for (int i = size - 1; i >= 0; i--) {
+    		new_s[i] = pop(stack);
+    	}
+    	new_s[size] = '\0';
     }
-    result[index] = '\0';
-
-    // Reverse the resulting string
-    int start = 0;
-    int end = index - 1;
-    while (start < end) {
-        char temp = result[start];
-        result[start] = result[end];
-        result[end] = temp;
-        start++;
-        end--;
-    }
-
-    // Free the stack memory
+    
     free(stack);
-
-    return result;
+    return new_s;
+    
+    //END
 }
