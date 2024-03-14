@@ -34,10 +34,12 @@ void destroy_stack(Stack *stack)
 
 bool is_empty(Stack *stack)
 {
+    return stack->size == 0;
 }
 
 bool is_full(Stack *stack)
 {
+    
 }
 
 bool push(Stack *stack, int item)
