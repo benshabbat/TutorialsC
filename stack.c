@@ -28,7 +28,7 @@ Stack *create_stack(int capacity)
 }
 void destroy_stack(Stack *stack)
 {
-    free(Stack->array);
+    free(Stack->capacity);
     free(Stack);
 }
 
@@ -39,7 +39,7 @@ bool is_empty(Stack *stack)
 
 bool is_full(Stack *stack)
 {
-    
+    return stack->size ==stack->capacity;
 }
 
 bool push(Stack *stack, int item)
