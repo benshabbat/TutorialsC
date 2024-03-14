@@ -28,6 +28,8 @@ Stack *create_stack(int capacity)
 }
 void destroy_stack(Stack *stack)
 {
+    free(Stack->array);
+    free(Stack);
 }
 
 bool is_empty(Stack *stack)
