@@ -28,8 +28,8 @@ Stack *create_stack(int capacity)
 }
 void destroy_stack(Stack *stack)
 {
-    free(Stack->array);
-    free(Stack);
+    free(stack->array);
+    free(stack);
 }
 
 bool is_empty(Stack *stack)
@@ -54,17 +54,27 @@ bool pop(Stack *stack, int *item)
 {
     if (is_empty(stack))
         return false;
-    item = stack->array[stack->size--];
+    *item = stack->array[stack->size--];
     return true;
 }
 bool peek(Stack *stack, int *item)
 {
     if (is_empty(stack))
         return false;
-    item = stack->array[stack->size - 1];
+    *item = stack->array[stack->size - 1];
     return true;
 }
 int main()
 {
+    Stack *stack = create_stack(5);
+    if(stack==NULL){
+        printf("Stack error");
+        return 1;
+    }
+    push(stack, 5);
+    printf("%d\n", stack->size);
+    printf("%d", stack->array[stack->size-1]);
+    destroy_stack(stack);
+
     return 0;
 }
