@@ -22,6 +22,9 @@ Stack *create_stack(int capacity)
         free(stack);
         return NULL;
     }
+    stack->capacity = capacity;
+    stack->size = 0;
+    return stack;
 }
 void destroy_stack(Stack *stack)
 {
