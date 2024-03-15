@@ -60,6 +60,7 @@ int evaluateReversePolishNotation(char* tokens[], int tokensSize) {
     // Complete the implementation here:
     // START
     for (int i = 0; i < tokensSize; i++) {
+        // 5 || -5
         if (isdigit(tokens[i][0]) || (tokens[i][0] == '-' && isdigit(tokens[i][1]))) {
             // If the token is a number, push it onto the stack
             int num = atoi(tokens[i]);
