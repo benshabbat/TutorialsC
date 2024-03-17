@@ -1,6 +1,7 @@
 #include <stdio.h>
  int main(){
-
-    printf("%d",-1%100);
+   char *s ="adassa";
+    printf("%d",s[0]);
+    printf("%c",s[0]);
     return 0;
  }

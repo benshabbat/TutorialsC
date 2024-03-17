@@ -71,7 +71,8 @@ int firstUniqueCharacter(const char *s) {
     // Complete the implementation here:
     // START
     // Initialize an array to keep track of character frequencies
-    int charCount[256] = {0};
+    // int charCount[256] = {0};
+    int charCount[122] = {0};
 
     // Count the frequency of each character in the string
     for (int i = 0; s[i] != '\0'; i++) {
