@@ -70,6 +70,37 @@ int front(struct Queue *queue) {
 int firstUniqueCharacter(const char *s) {
     // Complete the implementation here:
     // START
+    // Initialize an array to keep track of character frequencies
+    int charCount[256] = {0};
 
+    // Count the frequency of each character in the string
+    for (int i = 0; s[i] != '\0'; i++) {
+        charCount[s[i]]++;
+    }
+
+    // Find the index of the first unique character
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (charCount[s[i]] == 1) {
+            return i;
+        }
+    }
+
+    // If no unique character is found, return -1
+    return -1;
     // END
 }
+
+/*
+Example 1:
+
+Input: s = "leetcode"
+Output: 0
+Example 2:
+
+Input: s = "loveleetcode"
+Output: 2
+Example 3:
+
+Input: s = "aabb"
+Output: -1
+ */
