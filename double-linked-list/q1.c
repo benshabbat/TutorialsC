@@ -52,18 +52,33 @@ struct Node* insertAtEnd(struct Node* head, int data) {
 
 // Function to insert a new node at the beginning of the doubly linked list
 struct Node* insertAtBeginning(struct Node* head, int data) {
+    struct Node* newNode = createNode(data);
 
-    // Complete the implementation here:
-    // START
+    if (head == NULL) {
+        return newNode;
+    }
 
-    // END
+    newNode->next = head;
+    head->prev = newNode;
+    return newNode;
 }
 
 // Function to insert a new node after a specific node in the doubly linked list
 struct Node* insertAfter(struct Node* prevNode, int data) {
+    if (prevNode == NULL) {
+        return NULL;
+    }
 
-    // Complete the implementation here:
-    // START
+    struct Node* newNode = createNode(data);
 
-    // END
+    newNode->next = prevNode->next;
+    newNode->prev = prevNode;
+
+    if (prevNode->next != NULL) {
+        prevNode->next->prev = newNode;
+    }
+
+    prevNode->next = newNode;
+
+    return newNode;
 }
