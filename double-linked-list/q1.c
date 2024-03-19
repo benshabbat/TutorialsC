@@ -43,11 +43,20 @@ struct Node* getPrev(struct Node* node) {
 
 // Function to insert a new node at the end of the doubly linked list
 struct Node* insertAtEnd(struct Node* head, int data) {
+    struct Node* newNode = createNode(data);
 
-    // Complete the implementation here:
-    // START
+    if (head == NULL) {
+        return newNode;
+    }
 
-    // END
+    struct Node* current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    current->next = newNode;
+    newNode->prev = current;
+    return head;
 }
 
 // Function to insert a new node at the beginning of the doubly linked list
