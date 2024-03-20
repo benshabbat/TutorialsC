@@ -96,13 +96,20 @@ struct Node* insertAfter(struct Node* prevNode, int data) {
 struct Node* deleteNode(struct Node* head, struct Node* Node) {
     // Complete the implementation here:
     // START
+    if (head == NULL || Node == NULL) {
+        return head;
+    }
+    
+    if (head == Node) {
+        head = Node->next;
+    }
     if(Node==head->next){
         head->next=Node->next;
     }
     if(Node->next==NULL){
         Node->prev->next=NULL;
     }
-    if(node->next!=NULL){
+    if(Node->next!=NULL){
         Node->prev->next=Node->next;
         Node->next->prev=Node->prev
     }
