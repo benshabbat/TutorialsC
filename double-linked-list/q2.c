@@ -94,71 +94,36 @@ struct Node* insertAfter(struct Node* prevNode, int data) {
 
 // Function to delete a node from the doubly linked list
 struct Node* deleteNode(struct Node* head, struct Node* Node) {
-    // Complete the implementation here:
-    // START
     if (head == NULL || Node == NULL) {
         return head;
     }
-    
+
     if (head == Node) {
         head = Node->next;
     }
-    if(Node==head->next){
-        head->next=Node->next;
+
+    if (Node->next != NULL) {
+        Node->next->prev = Node->prev;
     }
-    if(Node->next==NULL){
-        Node->prev->next=NULL;
+
+    if (Node->prev != NULL) {
+        Node->prev->next = Node->next;
     }
-    if(Node->next!=NULL){
-        Node->prev->next=Node->next;
-        Node->next->prev=Node->prev
-    }
-    
+
     free(Node);
-    // END
     return head;
 }
 
 // Function to swap two nodes in the doubly linked list
 struct Node* swapNodes(struct Node* head, struct Node* node1, struct Node* node2) {
-    // Complete the implementation here:
-    // START
-    if (node1 == NULL || node2 == NULL) {
+    if (head == NULL || node1 == NULL || node2 == NULL || node1 == node2) {
         return head;
     }
 
-    if (node1 == head) {
-        head = node2;
-    } else if (node2 == head) {
-        head = node1;
-    }
-
-    struct Node* temp = node1->prev;
-    node1->prev = node2->prev;
-    node2->prev = temp;
-
-    if(node1->prev == node1)
-        node1->prev = node2;
-    if(node2->prev == node2)
-        node2->prev = node1;
-
-    temp = node1->next;
-    node1->next = node2->next;
-    node2->next = temp;
-    if(node1->next == node1)
-        node1->next = node2;
-    if(node2->next == node2)
-        node2->next = node1;
-
-    if (node1->next != NULL)
-        node1->next->prev = node1;
-    if (node1->prev != NULL)
-        node1->prev->next = node1;
-    if (node2->next != NULL)
-        node2->next->prev = node2;
-    if (node2->prev != NULL)
-        node2->prev->next = node2;
-    // END
+    // Swap data values
+    int temp = node1->data;
+    node1->data = node2->data;
+    node2->data = temp;
 
     return head;
 }
