@@ -205,10 +205,6 @@ struct Node *increment(struct Node *head, char *str)
             {
                 head = swapNodes(head, current, current->prev);
             }
-            while (current->next != NULL && current->count > current->next->count)
-            {
-                head = swapNodes(head, current, current->next);
-            }
             break;
         }
         current = current->next;
