@@ -1,6 +1,7 @@
 #include "Question.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Node structure for a doubly linked list
 struct Node
@@ -194,9 +195,8 @@ struct Node *increment(struct Node *head, char *str)
 {
     // Complete the implementation here:
     // START
-    struct Node *current = head;
-
     // Search for the node with the given string
+    struct Node *current = head;
     while (current != NULL)
     {
         if (strcmp(current->str, str) == 0)
@@ -204,28 +204,25 @@ struct Node *increment(struct Node *head, char *str)
             // Node found, increment count and reposition if necessary
             current->count++;
 
-            // Re-sort the list based on count
+            // Move the node to its correct position in the list
             while (current->prev != NULL && current->count < current->prev->count)
             {
                 head = swapNodes(head, current, current->prev);
             }
 
-            return head;
+            break;
         }
         current = current->next;
     }
 
     // If the string is not found, add it to the list
-    head = insertAtEnd(head, str);
-
-    // Re-sort the list based on count
-    current = head;
-    while (current->next != NULL && current->count > current->next->count)
+    if (current == NULL)
     {
-        head = swapNodes(head, current, current->next);
+        head = insertAtEnd(head, str);
     }
 
     return head;
+
     // END
 }
 
@@ -235,35 +232,32 @@ struct Node *decrement(struct Node *head, char *str)
 {
     // Complete the implementation here:
     // START
-    struct Node *current = head;
-
     // Search for the node with the given string
+    struct Node *current = head;
     while (current != NULL)
     {
         if (strcmp(current->str, str) == 0)
         {
-            // Node found, increment count and reposition if necessary
+            // Node found, decrement count and reposition if necessary
             current->count--;
 
-            // Re-sort the list based on count
-            while (current->prev != NULL && current->count < current->prev->count)
+            if (current->count == 0)
             {
-                head = swapNodes(head, current, current->prev);
+                // If count reaches 0, delete the node
+                head = deleteNode(head, current);
+            }
+            else
+            {
+                // Move the node to its correct position in the list
+                while (current->prev != NULL && current->count < current->prev->count)
+                {
+                    head = swapNodes(head, current, current->prev);
+                }
             }
 
-            return head;
+            break;
         }
         current = current->next;
-    }
-
-    // If the string is not found, add it to the list
-    head = insertAtEnd(head, str);
-
-    // Re-sort the list based on count
-    current = head;
-    while (current->next != NULL && current->count > current->next->count)
-    {
-        head = swapNodes(head, current, current->next);
     }
 
     return head;
