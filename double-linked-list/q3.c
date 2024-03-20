@@ -239,7 +239,22 @@ struct Node* decrement(struct Node* head, char* str){
 char* getMinString(struct Node* head){
     // Complete the implementation here:
     // START
+        if (head == NULL) {
+        return NULL;
+    }
 
+    // Traverse the list to find the node with the lowest count
+    struct Node* current = head;
+    struct Node* minNode = current;
+
+    while (current != NULL) {
+        if (current->count < minNode->count) {
+            minNode = current;
+        }
+        current = current->next;
+    }
+
+    return minNode->str;
     // END
 }
 
