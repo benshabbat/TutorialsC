@@ -262,6 +262,21 @@ char* getMinString(struct Node* head){
 char* getMaxString(struct Node* head){
     // Complete the implementation here:
     // START
+    if (head == NULL) {
+        return NULL;
+    }
 
+    // Traverse the list to find the node with the highest count
+    struct Node* current = head;
+    struct Node* maxNode = current;
+
+    while (current != NULL) {
+        if (current->count > maxNode->count) {
+            maxNode = current;
+        }
+        current = current->next;
+    }
+
+    return maxNode->str;
     // END
 }
