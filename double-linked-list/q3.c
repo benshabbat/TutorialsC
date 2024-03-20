@@ -195,30 +195,28 @@ struct Node *increment(struct Node *head, char *str)
 {
     // Complete the implementation here:
     // START
-    // Search for the node with the given string
     struct Node *current = head;
     while (current != NULL)
     {
         if (strcmp(current->str, str) == 0)
         {
-            // Node found, increment count and reposition if necessary
             current->count++;
-
-            // Move the node to its correct position in the list
             while (current->prev != NULL && current->count < current->prev->count)
             {
                 head = swapNodes(head, current, current->prev);
             }
-
+            while (current->next != NULL && current->count > current->next->count)
+            {
+                head = swapNodes(head, current, current->next);
+            }
             break;
         }
         current = current->next;
     }
 
-    // If the string is not found, add it to the list
     if (current == NULL)
     {
-        head = insertAtEnd(head, str);
+        head = insertAtBeginning(head, str);
     }
 
     return head;
