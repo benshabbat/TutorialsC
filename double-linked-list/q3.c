@@ -204,7 +204,34 @@ struct Node* increment(struct Node* head, char* str){
 struct Node* decrement(struct Node* head, char* str){
     // Complete the implementation here:
     // START
+    struct Node* current = head;
 
+    // Search for the node with the given string
+    while (current != NULL) {
+        if (strcmp(current->str, str) == 0) {
+            // Node found, increment count and reposition if necessary
+            current->count--;
+
+            // Re-sort the list based on count
+            while (current->prev != NULL && current->count < current->prev->count) {
+                head = swapNodes(head, current, current->prev);
+            }
+
+            return head;
+        }
+        current = current->next;
+    }
+
+    // If the string is not found, add it to the list
+    head = insertAtEnd(head, str);
+
+    // Re-sort the list based on count
+    current = head;
+    while (current->next != NULL && current->count > current->next->count) {
+        head = swapNodes(head, current, current->next);
+    }
+
+    return head;
     // END
 }
 
