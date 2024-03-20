@@ -3,17 +3,20 @@
 #include <stdlib.h>
 
 // Node structure for a doubly linked list
-struct Node {
-    char* str;
+struct Node
+{
+    char *str;
     int count;
-    struct Node* next;
-    struct Node* prev;
+    struct Node *next;
+    struct Node *prev;
 };
 
 // Function to create a new node
-struct Node* createNode(char* str) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (newNode == NULL) {
+struct Node *createNode(char *str)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    if (newNode == NULL)
+    {
         exit(EXIT_FAILURE);
     }
 
@@ -25,40 +28,47 @@ struct Node* createNode(char* str) {
     return newNode;
 }
 
-char* getString(struct Node* node) {
-    if(node == NULL)
+char *getString(struct Node *node)
+{
+    if (node == NULL)
         return NULL;
     return node->str;
 }
 
-int getCount(struct Node* node) {
-    if(node == NULL)
+int getCount(struct Node *node)
+{
+    if (node == NULL)
         return 0;
     return node->count;
 }
 
-struct Node* getNext(struct Node* node) {
-    if(node == NULL)
+struct Node *getNext(struct Node *node)
+{
+    if (node == NULL)
         return NULL;
     return node->next;
 }
 
-struct Node* getPrev(struct Node* node) {
-    if(node == NULL)
+struct Node *getPrev(struct Node *node)
+{
+    if (node == NULL)
         return NULL;
     return node->prev;
 }
 
 // Function to insert a new node at the end of the doubly linked list
-struct Node* insertAtEnd(struct Node* head, char* str) {
-    struct Node* newNode = createNode(str);
+struct Node *insertAtEnd(struct Node *head, char *str)
+{
+    struct Node *newNode = createNode(str);
 
-    if (head == NULL) {
+    if (head == NULL)
+    {
         return newNode;
     }
 
-    struct Node* current = head;
-    while (current->next != NULL) {
+    struct Node *current = head;
+    while (current->next != NULL)
+    {
         current = current->next;
     }
 
@@ -68,10 +78,12 @@ struct Node* insertAtEnd(struct Node* head, char* str) {
 }
 
 // Function to insert a new node at the beginning of the doubly linked list
-struct Node* insertAtBeginning(struct Node* head, char* str) {
-    struct Node* newNode = createNode(str);
+struct Node *insertAtBeginning(struct Node *head, char *str)
+{
+    struct Node *newNode = createNode(str);
 
-    if (head == NULL) {
+    if (head == NULL)
+    {
         return newNode;
     }
 
@@ -81,17 +93,20 @@ struct Node* insertAtBeginning(struct Node* head, char* str) {
 }
 
 // Function to insert a new node after a specific node in the doubly linked list
-struct Node* insertAfter(struct Node* prevNode, char* str) {
-    if (prevNode == NULL) {
+struct Node *insertAfter(struct Node *prevNode, char *str)
+{
+    if (prevNode == NULL)
+    {
         return NULL;
     }
 
-    struct Node* newNode = createNode(str);
+    struct Node *newNode = createNode(str);
 
     newNode->next = prevNode->next;
     newNode->prev = prevNode;
 
-    if (prevNode->next != NULL) {
+    if (prevNode->next != NULL)
+    {
         prevNode->next->prev = newNode;
     }
 
@@ -101,20 +116,25 @@ struct Node* insertAfter(struct Node* prevNode, char* str) {
 }
 
 // Function to delete a node from the doubly linked list
-struct Node* deleteNode(struct Node* head, struct Node* Node) {
-    if (head == NULL || Node == NULL) {
+struct Node *deleteNode(struct Node *head, struct Node *Node)
+{
+    if (head == NULL || Node == NULL)
+    {
         return head;
     }
 
-    if (head == Node) {
+    if (head == Node)
+    {
         head = Node->next;
     }
 
-    if (Node->next != NULL) {
+    if (Node->next != NULL)
+    {
         Node->next->prev = Node->prev;
     }
 
-    if (Node->prev != NULL) {
+    if (Node->prev != NULL)
+    {
         Node->prev->next = Node->next;
     }
 
@@ -123,32 +143,37 @@ struct Node* deleteNode(struct Node* head, struct Node* Node) {
 }
 
 // Function to swap two nodes in the doubly linked list
-struct Node* swapNodes(struct Node* head, struct Node* node1, struct Node* node2) {
-    if (node1 == NULL || node2 == NULL) {
+struct Node *swapNodes(struct Node *head, struct Node *node1, struct Node *node2)
+{
+    if (node1 == NULL || node2 == NULL)
+    {
         return head;
     }
 
-    if (node1 == head) {
+    if (node1 == head)
+    {
         head = node2;
-    } else if (node2 == head) {
+    }
+    else if (node2 == head)
+    {
         head = node1;
     }
 
-    struct Node* temp = node1->prev;
+    struct Node *temp = node1->prev;
     node1->prev = node2->prev;
     node2->prev = temp;
 
-    if(node1->prev == node1)
+    if (node1->prev == node1)
         node1->prev = node2;
-    if(node2->prev == node2)
+    if (node2->prev == node2)
         node2->prev = node1;
 
     temp = node1->next;
     node1->next = node2->next;
     node2->next = temp;
-    if(node1->next == node1)
+    if (node1->next == node1)
         node1->next = node2;
-    if(node2->next == node2)
+    if (node2->next == node2)
         node2->next = node1;
 
     if (node1->next != NULL)
@@ -165,19 +190,23 @@ struct Node* swapNodes(struct Node* head, struct Node* node1, struct Node* node2
 
 // Function increments the count of the given string, or adds it to the list if it doesn't exist
 // The double linked list must be sorted in ascending order by count after the calling the function
-struct Node* increment(struct Node* head, char* str){
+struct Node *increment(struct Node *head, char *str)
+{
     // Complete the implementation here:
     // START
-    struct Node* current = head;
+    struct Node *current = head;
 
     // Search for the node with the given string
-    while (current != NULL) {
-        if (strcmp(current->str, str) == 0) {
+    while (current != NULL)
+    {
+        if (strcmp(current->str, str) == 0)
+        {
             // Node found, increment count and reposition if necessary
             current->count++;
 
             // Re-sort the list based on count
-            while (current->prev != NULL && current->count < current->prev->count) {
+            while (current->prev != NULL && current->count < current->prev->count)
+            {
                 head = swapNodes(head, current, current->prev);
             }
 
@@ -191,7 +220,8 @@ struct Node* increment(struct Node* head, char* str){
 
     // Re-sort the list based on count
     current = head;
-    while (current->next != NULL && current->count > current->next->count) {
+    while (current->next != NULL && current->count > current->next->count)
+    {
         head = swapNodes(head, current, current->next);
     }
 
@@ -201,19 +231,23 @@ struct Node* increment(struct Node* head, char* str){
 
 // Function decrements the count of the given string, or removes it from the list if it reaches 0
 // The double linked list must be sorted in ascending order by count after the calling the function
-struct Node* decrement(struct Node* head, char* str){
+struct Node *decrement(struct Node *head, char *str)
+{
     // Complete the implementation here:
     // START
-    struct Node* current = head;
+    struct Node *current = head;
 
     // Search for the node with the given string
-    while (current != NULL) {
-        if (strcmp(current->str, str) == 0) {
+    while (current != NULL)
+    {
+        if (strcmp(current->str, str) == 0)
+        {
             // Node found, increment count and reposition if necessary
             current->count--;
 
             // Re-sort the list based on count
-            while (current->prev != NULL && current->count < current->prev->count) {
+            while (current->prev != NULL && current->count < current->prev->count)
+            {
                 head = swapNodes(head, current, current->prev);
             }
 
@@ -227,7 +261,8 @@ struct Node* decrement(struct Node* head, char* str){
 
     // Re-sort the list based on count
     current = head;
-    while (current->next != NULL && current->count > current->next->count) {
+    while (current->next != NULL && current->count > current->next->count)
+    {
         head = swapNodes(head, current, current->next);
     }
 
@@ -236,19 +271,23 @@ struct Node* decrement(struct Node* head, char* str){
 }
 
 // Function returns the string with the lowest count
-char* getMinString(struct Node* head){
+char *getMinString(struct Node *head)
+{
     // Complete the implementation here:
     // START
-        if (head == NULL) {
+    if (head == NULL)
+    {
         return NULL;
     }
 
     // Traverse the list to find the node with the lowest count
-    struct Node* current = head;
-    struct Node* minNode = current;
+    struct Node *current = head;
+    struct Node *minNode = current;
 
-    while (current != NULL) {
-        if (current->count < minNode->count) {
+    while (current != NULL)
+    {
+        if (current->count < minNode->count)
+        {
             minNode = current;
         }
         current = current->next;
@@ -259,19 +298,23 @@ char* getMinString(struct Node* head){
 }
 
 // Function returns the string with the highest count
-char* getMaxString(struct Node* head){
+char *getMaxString(struct Node *head)
+{
     // Complete the implementation here:
     // START
-    if (head == NULL) {
+    if (head == NULL)
+    {
         return NULL;
     }
 
     // Traverse the list to find the node with the highest count
-    struct Node* current = head;
-    struct Node* maxNode = current;
+    struct Node *current = head;
+    struct Node *maxNode = current;
 
-    while (current != NULL) {
-        if (current->count > maxNode->count) {
+    while (current != NULL)
+    {
+        if (current->count > maxNode->count)
+        {
             maxNode = current;
         }
         current = current->next;
