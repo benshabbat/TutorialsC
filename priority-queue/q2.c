@@ -93,9 +93,28 @@ int top(struct PriorityQueue* pq) {
     return minValue;
 }
 
-int getKthSmallestNumber(const int arr[], int size, int k) {
+int  (const int arr[], int size, int k) {
     // Complete the implementation here:
     // START
+    // Create a priority queue
+    struct PriorityQueue* pq = createPriorityQueue();
 
+    // Insert all elements of the array into the priority queue
+    for (int i = 0; i < size; i++) {
+        enqueue(pq, arr[i]);
+    }
+
+    // Remove size - k largest elements
+    for (int i = size - k; i > 0; i--) {
+        dequeue(pq);
+    }
+
+    // Return the kth smallest element
+    int kthSmallest = top(pq);
+
+    // Free the memory used by the priority queue
+    free(pq);
+
+    return kthSmallest;
     // END
 }
