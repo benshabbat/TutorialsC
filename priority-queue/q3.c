@@ -95,22 +95,37 @@ int top(struct PriorityQueue *pq) {
 }
 
 int maxProduct(int *nums, int numsSize) {
-    int max1 = nums[0], max2 = nums[1];
+    // int max1 = nums[0], max2 = nums[1];
     
-    if (max1 < max2) {
-        int temp = max1;
-        max1 = max2;
-        max2 = temp;
+    // if (max1 < max2) {
+    //     int temp = max1;
+    //     max1 = max2;
+    //     max2 = temp;
+    // }
+    
+    // for (int i = 2; i < numsSize; i++) {
+    //     if (nums[i] >= max1) {
+    //         max2 = max1;
+    //         max1 = nums[i];
+    //     } else if (nums[i] > max2) {
+    //         max2 = nums[i];
+    //     }
+    // }
+    
+    // return (max1 - 1) * (max2 - 1);
+
+    struct PriorityQueue *pq = createPriorityQueue();
+
+    // Enqueue all elements into the priority queue
+    for (int i = 0; i < numsSize; i++) {
+        enqueue(pq, nums[i]*-1);
     }
-    
-    for (int i = 2; i < numsSize; i++) {
-        if (nums[i] >= max1) {
-            max2 = max1;
-            max1 = nums[i];
-        } else if (nums[i] > max2) {
-            max2 = nums[i];
-        }
-    }
-    
-    return (max1 - 1) * (max2 - 1);
+
+    // Dequeue the two largest elements
+    int max1 = dequeue(pq);
+    int max2 = dequeue(pq);
+
+    // Calculate and return the maximum product
+    return (max1 + 1) * (max2 + 1);
+
 }
