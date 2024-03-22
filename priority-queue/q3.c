@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <Question.h>
 
-#define MAX_SIZE 100
+#define MAX_SIZE 500
 
 // Structure to represent a priority queue
 struct PriorityQueue {
@@ -10,8 +11,8 @@ struct PriorityQueue {
 };
 
 // Function to create a priority queue
-struct PriorityQueue* createPriorityQueue() {
-    struct PriorityQueue* newNode = (struct PriorityQueue*)malloc(sizeof(struct PriorityQueue));
+struct PriorityQueue *createPriorityQueue() {
+    struct PriorityQueue *newNode = (struct PriorityQueue *) malloc(sizeof(struct PriorityQueue));
     if (newNode == NULL) {
         exit(EXIT_FAILURE);
     }
@@ -21,19 +22,19 @@ struct PriorityQueue* createPriorityQueue() {
 }
 
 // Function to return the size of the priority queue
-int getSize(struct PriorityQueue* pq) {
+int getSize(struct PriorityQueue *pq) {
     return pq->size;
 }
 
 // Function to swap two elements in the heap
-void swap(int* a, int* b) {
+void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
 // Function to maintain the heap property (min-heap)
-void heapifyUp(struct PriorityQueue* pq, int index) {
+void heapifyUp(struct PriorityQueue *pq, int index) {
     while (index > 0) {
         int parent = (index - 1) / 2;
         if (pq->heap[index] < pq->heap[parent]) {
@@ -46,7 +47,7 @@ void heapifyUp(struct PriorityQueue* pq, int index) {
 }
 
 // Function to maintain the heap property (min-heap)
-void heapifyDown(struct PriorityQueue* pq, int index) {
+void heapifyDown(struct PriorityQueue *pq, int index) {
     while (2 * index + 1 < pq->size) {
         int leftChild = 2 * index + 1;
         int rightChild = 2 * index + 2;
@@ -66,7 +67,7 @@ void heapifyDown(struct PriorityQueue* pq, int index) {
 }
 
 // Function to insert an element into the priority queue
-void enqueue(struct PriorityQueue* pq, int value) {
+void enqueue(struct PriorityQueue *pq, int value) {
     if (pq->size < MAX_SIZE) {
         pq->heap[pq->size] = value;
         heapifyUp(pq, pq->size);
@@ -75,8 +76,8 @@ void enqueue(struct PriorityQueue* pq, int value) {
 }
 
 // Function to remove and return the minimum element from the priority queue
-int dequeue(struct PriorityQueue* pq) {
-    if(pq->size == 0)
+int dequeue(struct PriorityQueue *pq) {
+    if (pq->size == 0)
         return -1;
     int minValue = pq->heap[0];
     pq->heap[0] = pq->heap[pq->size - 1];
@@ -86,35 +87,13 @@ int dequeue(struct PriorityQueue* pq) {
 }
 
 // Function to return the minimum element from the priority queue
-int top(struct PriorityQueue* pq) {
-    if(pq->size == 0)
+int top(struct PriorityQueue *pq) {
+    if (pq->size == 0)
         return -1;
     int minValue = pq->heap[0];
     return minValue;
 }
 
-int getKthSmallestNumber(const int arr[], int size, int k) {
-    // Complete the implementation here:
-    // START
-    // Create a priority queue
-    struct PriorityQueue* pq = createPriorityQueue();
+int maxProduct(int *nums, int numsSize) {
 
-    // Insert all elements of the array into the priority queue
-    for (int i = 0; i < size; i++) {
-        enqueue(pq, arr[i]);
-    }
-
-    // Remove size - k largest elements
-    for (int i = size - k; i > 0; i--) {
-        dequeue(pq);
-    }
-
-    // Return the kth smallest element
-    int kthSmallest = top(pq);
-
-    // Free the memory used by the priority queue
-    free(pq);
-
-    return kthSmallest;
-    // END
 }
