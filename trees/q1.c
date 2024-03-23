@@ -79,8 +79,6 @@ int getNumOfLeaves(struct TreeNode *root)
 
     // Complete the implementation here:
     // START
-    if (root == NULL)
-        return 0;
     else if (root->left == NULL && root->right == NULL)
         return 1;
     else
@@ -96,6 +94,10 @@ int getDepth(struct TreeNode *root)
 
     // Complete the implementation here:
     // START
-
+    else {
+        int leftDepth = getDepth(root->left);
+        int rightDepth = getDepth(root->right);
+        return 1 + max(leftDepth, rightDepth);
+    }
     // END
 }
