@@ -1,8 +1,8 @@
 #include "Question.h"
-#include <stdio.h>
 #include <stdlib.h>
-
-#define max(a, b) ((a > b) ? (a) : (b))
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
 
 // Node structure for a binary tree
 struct TreeNode {
@@ -50,36 +50,24 @@ struct TreeNode* insertRightNode(struct TreeNode* node, int data) {
     return right;
 }
 
-// Function to get number of node in tree rooted in root
-int getNumOfNodes(struct TreeNode* root) {
-    if(root == NULL)
-        return 0;
-
+// Function to traverse the tree in preorder
+void preOrderTraversal(struct TreeNode* root, int* result, int* index){
     // Complete the implementation here:
     // START
-    if(root == NULL)
-        return 0;
-    else
-        return 1 + getNumOfNodes(root->left) + getNumOfNodes(root->right);
+    
     // END
 }
 
-// Function to get number of leaves in tree rooted in root
-int getNumOfLeaves(struct TreeNode* root) {
-    if(root == NULL)
-        return 0;
-
+// Function to traverse the tree in inorder
+void inOrderTraversal(struct TreeNode* root, int* result, int* index) {
     // Complete the implementation here:
     // START
 
     // END
 }
 
-// Function to get depth of the tree rooted in root
-int getDepth(struct TreeNode* root) {
-    if(root == NULL)
-        return 0;
-
+// Function to traverse the tree in postorder
+void postOrderTraversal(struct TreeNode* root, int* result, int* index) {
     // Complete the implementation here:
     // START
 
