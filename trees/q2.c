@@ -80,7 +80,16 @@ void inOrderTraversal(struct TreeNode *root, int *result, int *index)
 {
     // Complete the implementation here:
     // START
+    if (root == NULL) return;
 
+    // Traverse the left subtree
+    inOrderTraversal(root->left, result, index);
+
+    // Visit the root
+    result[(*index)++] = root->data;
+
+    // Traverse the right subtree
+    inOrderTraversal(root->right, result, index);
     // END
 }
 
