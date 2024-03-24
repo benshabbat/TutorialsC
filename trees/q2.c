@@ -98,6 +98,15 @@ void postOrderTraversal(struct TreeNode *root, int *result, int *index)
 {
     // Complete the implementation here:
     // START
+    if (root == NULL) return;
 
+    // Traverse the left subtree
+    postOrderTraversal(root->left, result, index);
+
+    // Traverse the right subtree
+    postOrderTraversal(root->right, result, index);
+
+    // Visit the root
+    result[(*index)++] = root->data;
     // END
 }
