@@ -1,4 +1,3 @@
-#include <Question.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -118,3 +117,23 @@ struct Tuple *performQueries(int n, struct Query *queries, int numQueries) {
     return result;
 }
 
+int main() {
+    int n = 5;
+    struct Query queries[] = {
+        {"union", 0, 1},
+        {"union", 2, 3},
+        {"size", 0, 0},
+        {"size", 2, 0}
+    };
+    int numQueries = sizeof(queries) / sizeof(queries[0]);
+
+    struct Tuple *results = performQueries(n, queries, numQueries);
+
+    for (int i = 0; i < numQueries; i++) {
+        printf("Query %d: Number of components = %d, Max size = %d\n", i, results[i].num_of_components, results[i].max_size);
+    }
+
+    free(results);
+
+    return 0;
+}
