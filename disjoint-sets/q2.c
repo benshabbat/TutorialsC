@@ -1,4 +1,3 @@
-#include <Question.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -142,4 +141,36 @@ struct Tuple *performQueries(int n, struct Query *queries, int numQueries)
 
     // END
     return result;
+}
+int main()
+{
+    int n = 5; // Number of elements
+    struct Query queries[] = {
+        {"union", 0, 1}, // Union the sets containing elements 0 and 1
+        {"union", 1, 2}, // Union the sets containing elements 1 and 2
+        {"get", 0, 0},   // Get information about the set containing element 0
+        {"get", 1, 0}    // Get information about the set containing element 1
+    };
+    int numQueries = sizeof(queries) / sizeof(queries[0]);
+
+    struct Tuple *results = performQueries(n, queries, numQueries);
+
+    for (int i = 0; i < numQueries; ++i)
+    {
+        if (strcmp(queries[i].type, "union") == 0)
+        {
+            printf("Union operation\n");
+        }
+        else if (strcmp(queries[i].type, "get") == 0)
+        {
+            printf("Get operation\n");
+            printf("Min element: %d\n", results[i].min_element);
+            printf("Max element: %d\n", results[i].max_element);
+            printf("Set size: %d\n", results[i].set_size);
+        }
+        printf("\n");
+    }
+
+    free(results);
+    return 0;
 }
