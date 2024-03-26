@@ -122,5 +122,27 @@ int comparePairs(const void *a, const void *b) {
 }
 
 int *kWeakestRows(int **mat, int matSize, int *matColSize, int k, int *returnSize) {
-    
+    struct PriorityQueue *pq = createPriorityQueue();
+
+    // Insert rows into the priority queue based on their count of ones
+    for (int i = 0; i < matSize; i++) {
+        int count = 0;
+        for (int j = 0; j < *matColSize; j++) {
+            if (mat[i][j] == 1) {
+                count++;
+            }
+        }
+        enqueue(pq, createPair(i, count));
+    }
+
+    // Retrieve the k weakest rows from the priority queue
+    int *result = (int *)malloc(k * sizeof(int));
+    *returnSize = k;
+    for (int i = 0; i < k; i++) {
+        struct Pair weakest = dequeue(pq);
+        result[i] = weakest.row;
+    }
+
+    free(pq);
+    return result;
 }
