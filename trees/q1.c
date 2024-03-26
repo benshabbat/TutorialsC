@@ -64,8 +64,6 @@ int getNumOfNodes(struct TreeNode *root)
 
     // Complete the implementation here:
     // START
-    if (root == NULL)
-        return 0;
     else
         return 1 + getNumOfNodes(root->left) + getNumOfNodes(root->right);
     // END

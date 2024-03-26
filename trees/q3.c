@@ -55,6 +55,20 @@ struct TreeNode *insertRightNode(struct TreeNode *node, int data)
     node->right = right;
     return right;
 }
+// Function to get depth of the tree rooted in root
+int getDepth(struct TreeNode *root)
+{
+    if (root == NULL)
+        return 0;
+
+    // Complete the implementation here:
+    // START
+    else
+    {
+        return max(getDepth(root->left), getDepth(root->right)) + 1;
+    }
+    // END
+}
 
 int diameterOfBinaryTree(struct TreeNode *root)
 {
@@ -62,5 +76,13 @@ int diameterOfBinaryTree(struct TreeNode *root)
     // START
     if (root == NULL)
         return 0;
+
+    int leftDepth = getDepth(root->left);
+    int rightDepth = getDepth(root->right);
+
+    int leftDiameter = diameterOfBinaryTree(root->left);
+    int rightDiameter = diameterOfBinaryTree(root->right);
+
+    return max(leftDepth + rightDepth, max(leftDiameter, rightDiameter));
     // END
 }
