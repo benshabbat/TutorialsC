@@ -53,8 +53,38 @@ struct TreeNode* insertRightNode(struct TreeNode* node, int data) {
 
 
 int deepestLeavesSum(struct TreeNode* root) {
-    // Complete the implementation here:
-    // START
+    if (root == NULL) {
+        return 0;
+    }
 
-    // END
+    // Initialize variables for the sum of current level and the sum of deepest level
+    int sum = 0, deepestSum = 0;
+    struct TreeNode* current;
+    struct TreeNode* queue[10000]; // Assuming the maximum number of nodes in the tree is 10000
+    int front = -1, rear = -1;
+
+    queue[++rear] = root;
+
+    while (front != rear) {
+        int levelSize = rear - front;
+
+        sum = 0; // Reset sum for the current level
+        for (int i = 0; i < levelSize; ++i) {
+            current = queue[++front];
+            sum += current->data;
+
+            if (current->left != NULL) {
+                queue[++rear] = current->left;
+            }
+            if (current->right != NULL) {
+                queue[++rear] = current->right;
+            }
+        }
+
+        // Update deepest sum
+        deepestSum = sum;
+    }
+
+    return deepestSum;
 }
+
