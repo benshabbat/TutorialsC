@@ -12,6 +12,7 @@ Node* create_node(int value){
     new_node->value = value;
     new_node->next = NULL;
     new_node->prev = NULL;
+    return new_node;
 }
 
 Node* add_node(Node* head, int value){
@@ -20,4 +21,5 @@ Node* add_node(Node* head, int value){
         return new_node;
     head->next = new_node;
     new_node->prev = head;
+    return new_node;
 }
