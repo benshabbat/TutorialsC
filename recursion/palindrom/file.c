@@ -4,16 +4,17 @@
 
 bool palindrom(char *s1, int start, int end)
 {
-    if (start >= end)
-    {
+    // If there is only one character
+    if (start >= end) {
         return true;
     }
 
-    if (s1[start] != s1[end])
-    {
+    // If characters at start and end are not same
+    if (str[start] != str[end]) {
         return false;
     }
 
+    // Recursively check substring
     return palindrom(s1, start + 1, end - 1);
 }
 
