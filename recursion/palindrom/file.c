@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool palindrom(char *s1, int start, int end)
+bool is_palindrom(char *s1, int start, int end)
 {
     // If there is only one character
     if (start >= end) {
@@ -15,7 +15,7 @@ bool palindrom(char *s1, int start, int end)
     }
 
     // Recursively check substring
-    return palindrom(s1, start + 1, end - 1);
+    return is_palindrom(s1, start + 1, end - 1);
 }
 
 int main()
@@ -25,7 +25,7 @@ int main()
     int length = strlen(str);
 
     // Reverse the string
-    if (palindrom(str, 0, length - 1))
+    if (is_palindrom(str, 0, length - 1))
     {
         printf("True");
     }
